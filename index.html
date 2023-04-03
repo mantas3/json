@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<body>
+<div style="display:flex;">
+	<div>
+		<p>Garbage in:</p>
+		<textarea id ="json_input" rows="50">{"ID":null,"name":"Doe","first-name":"John","age":25,"hobbies":["reading","cinema",{"sports":["volley-ball","snowboard"]}],"address":{}}</textarea>		
+	</div>
+	<div>
+		<p>Pretty out:</p>	
+		<textarea id ="json_output" rows="50" readonly></textarea>	
+	</div>	
+</div>	
+	<div>
+		<p>Mini out:</p>	
+		<textarea id ="json_output_minify" rows="25" readonly></textarea>	
+	</div>	
+</body>
+<script>
+	const json_input_element = document.getElementById("json_input");
+	const json_output_element = document.getElementById("json_output");	
+	const json_output_element_minify = document.getElementById("json_output_minify");	
+	json_input_element.addEventListener("input", updateJsonOutput);
+	updateJsonOutput();
+	function updateJsonOutput(e) {		
+		try {
+			JSON.parse(json_input_element.value);
+		} catch(e) {			
+			json_output_element.innerHTML = "Invalid JSON"
+			json_output_element_minify.innerHTML = "Invalid JSON"
+			return;
+		} 		
+		json_output_element.innerHTML = JSON.stringify(JSON.parse(json_input_element.value), null, 4);
+		json_output_element_minify.innerHTML = JSON.stringify(JSON.parse(json_input_element.value));
+	}
+</script>
+<style type="text/css">
+	div {
+		flex: 1;
+	}
+	textarea {
+		width: 100%;		
+	}	
+</style>

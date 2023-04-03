@@ -25,8 +25,8 @@
 		try {
 			JSON.parse(json_input_element.value);
 		} catch(e) {			
-			json_output_element.innerHTML = "Invalid JSON"
-			json_output_element_minify.innerHTML = "Invalid JSON"
+			json_output_element.innerHTML = e;
+			json_output_element_minify.innerHTML = e;
 			return;
 		} 		
 		json_output_element.innerHTML = JSON.stringify(JSON.parse(json_input_element.value), null, 4);
